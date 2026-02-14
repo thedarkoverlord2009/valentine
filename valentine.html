@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Baby ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  text-align:center;
+  color:white;
+  overflow:hidden;
+  background:linear-gradient(45deg,#ff4d6d,#ff9a9e,#c471f5);
+}
+
+.slide{
+  display:none;
+  height:100vh;
+  padding:30px;
+  animation:fade 1s;
+}
+.active{display:block;}
+
+@keyframes fade{
+  from{opacity:0; transform:scale(.95)}
+  to{opacity:1; transform:scale(1)}
+}
+
+button{
+  padding:12px 20px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  color:#ff4d6d;
+  margin:10px;
+  cursor:pointer;
+}
+
+.card{
+  background:rgba(255,255,255,.15);
+  padding:20px;
+  border-radius:20px;
+  width:85%;
+  margin:auto;
+}
+
+img{
+  width:160px;
+  border-radius:15px;
+  margin:8px;
+  box-shadow:0 0 15px rgba(255,255,255,.6);
+}
+
+/* hearts */
+.heart{
+  position:fixed;
+  color:#ff1e56;
+  animation:float 5s linear forwards;
+}
+@keyframes float{
+  to{transform:translateY(-100vh);opacity:0}
+}
+
+/* fireworks */
+.firework{
+  position:fixed;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  animation:boom 1s ease-out forwards;
+}
+@keyframes boom{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Slide 1 Intro -->
+<div class="slide active">
+  <h1>For the love of my life ❤️</h1>
+  <div class="card">I made this for you, not much but i tried my best 😊</div>
+  <button onclick="next()">Open</button>
+</div>
+
+<!-- Slide 2 Our Song -->
+<div class="slide">
+  <h1>Our Song 🎵</h1>
+  <div class="card">
+    This song reminds me of you ❤️<br><br>
+    <button onclick="playSong()">Play ▶️</button>
+  </div>
+  <button onclick="next()">Next</button>
+</div>
+
+<!-- Slide 3 First Meeting -->
+<div class="slide">
+  <h1>Our First Meeting ✨</h1>
+  <div class="card">
+    The first time we met:<br><br>
+    <b>We met in TSB and ever since its been amazing with you :></b><br><br>
+    I didn’t know you'd become this special ❤️
+  </div>
+  <button onclick="next()">Next</button>
+</div>
+
+
+<!-- Slide 4 Memories -->
+<div class="slide">
+  <h1>Our Memories 📸</h1>
+
+  <div class="card" style="max-height:65vh; overflow-y:auto;">
+
+    <div class="gallery">
+  <img src="photo1.png" title="Our first photo ❤️">
+  <img src="photo2.png">
+  <img src="photo3.png">
+  <img src="photo4.png">
+  <img src="photo5.png">
+  <img src="photo6.png">
+  <img src="photo7.png">
+  <img src="photo8.png">
+  <img src="photo9.png">
+  <img src="photo10.png">
+  <img src="photo11.png">
+  <img src="photo12.png">
+  <img src="photo13.png">
+  <img src="photo14.png">
+</div>
+
+
+  </div>
+
+  <button onclick="next()">Next</button>
+</div>
+
+<!-- Slide 5 Timeline -->
+<div class="slide">
+  <h1>Our Story 💞</h1>
+  <div class="card" style="text-align:left">
+     Know Each other since early-mid 2024s<br><br>
+    📍 Togeather since — 23 March 2025<br><br>
+    😊 First long talk — It was 14 hours non stop :o<br><br>
+    🌙 Late night chats — Best nights i ruined my sleep for :>><br><br>
+    ❤️ Today — still choosing you and forever, my promise
+  </div>
+  <button onclick="next()">Next</button>
+</div>
+
+
+<!-- Slide 6 Message -->
+<div class="slide">
+  <h1>A Message 💌</h1>
+  <div class="card"><p id="type"></p></div>
+  <button onclick="next()">Next</button>
+</div>
+
+<!-- Slide 7 Final -->
+<div class="slide">
+  <h1>Happy Valentine’s Day ❤️</h1>
+  <div class="card">
+    You are the best 💕<br><br>
+    Will you be my Valentine?
+  </div>
+  <button onclick="celebrate()">YES 💖</button>
+</div>
+
+<!-- SONG -->
+<audio id="song">
+  <!-- replace with your song -->
+  <source src="song.mp3">
+</audio>
+
+<script>
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+function next(){
+  slides[index].classList.remove("active");
+  index++;
+  slides[index].classList.add("active");
+}
+
+function playSong(){
+  document.getElementById("song").play();
+}
+
+/* typing */
+const msg="You make my days better and my life brighter. I'm really grateful to have you, i am the luckiest guy in this whole world that i have a person like you and i wish we stay togeather forever and i believe we will so  this day is also very special as we are reminded how much we love each other and show our love. I want to do all sorts of stuff with you, all the naughty things we talk about, watching movies, travelling the world, sleeping togeather, being lovely everyday, and love each other forever and have a happy life. I love you forever my baby, my wifey, my princess, my mommy, my everything <3.";
+let i=0;
+function type(){
+  if(i<msg.length){
+    document.getElementById("type").innerHTML+=msg.charAt(i);
+    i++;
+    setTimeout(type,40);
+  }
+}
+type();
+
+/* hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.bottom="0";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+},400);
+
+/* fireworks */
+function celebrate(){
+  for(let i=0;i<50;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    f.style.left="50%";
+    f.style.top="50%";
+    f.style.setProperty('--x',(Math.random()*400-200)+'px');
+    f.style.setProperty('--y',(Math.random()*400-200)+'px');
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+  alert("YAYYY ❤️🥰");
+}
+</script>
+
+
+
+</body>
+</html>
